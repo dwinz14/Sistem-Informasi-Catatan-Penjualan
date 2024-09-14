@@ -1,56 +1,127 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title', 'Aplikasi Manajemen Barang')</title>
-    
-    <!-- Bootstrap CSS -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Bootstrap JS, Popper.js, and jQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <!-- Optional: add your custom CSS file here -->
-    <!-- <link href="{{ asset('css/custom.css') }}" rel="stylesheet"> -->
+  <title>@yield('title', 'Aplikasi Manajemen Toko')</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
 
-    @yield('styles')
+  <!-- Favicons -->
+  <link href="{{ asset('assets/img/favicon.png') }}" rel="icon">
+  <link href="{{ asset('assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{{ asset('assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
+  <link href="{{ asset('assets/vendor/boxicons/css/boxicons.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('assets/vendor/quill/quill.snow.css') }}" rel="stylesheet">
+  <link href="{{ asset('assets/vendor/quill/quill.bubble.css') }}" rel="stylesheet">
+  <link href="{{ asset('assets/vendor/remixicon/remixicon.css') }}" rel="stylesheet">
+  <link href="{{ asset('assets/vendor/simple-datatables/style.css') }}" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+
+  <!-- =======================================================
+  * Template Name: NiceAdmin
+  * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
+  * Updated: Apr 20 2024 with Bootstrap v5.3.3
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
 </head>
+
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
-        <div class="container">
-            <a class="navbar-brand" href="{{ url('/') }}">Aplikasi Manajemen</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('jenis_barang.index') }}">Jenis Barang</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('barang.index') }}">Barang</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('transaksi.index') }}">Transaksi</a>
-                    </li>
-                    <!-- Tambahkan menu lain di sini sesuai kebutuhan -->
-                </ul>
-            </div>
-        </div>
-    </nav>
+  <!-- Header -->
+  <header id="header" class="header fixed-top d-flex align-items-center">
+    <div class="d-flex align-items-center justify-content-between">
+      <a href="{{ url('/') }}" class="logo d-flex align-items-center">
+          <img src="{{ asset('assets/img/logo2.png') }}" alt="" style="max-height: 35px;">
+          <span class="d-none d-lg-block">SI PENJUALAN</span>
+      </a>
+      <i class="bi bi-list toggle-sidebar-btn"></i>
+  </div>
+  </header>
 
-    <main class="container">
-        @yield('content')
-    </main>
+  <!-- Sidebar -->
+  <aside id="sidebar" class="sidebar">
+      <ul class="sidebar-nav" id="sidebar-nav">
+          <li class="nav-item">
+              <a class="nav-link {{ Request::is('/') ? 'active' : '' }}" href="{{ url('/') }}">
+                  <i class="bi bi-grid"></i>
+                  <span>Dashboard</span>
+              </a>
+          </li>
+          
+          <li class="nav-heading">Master Data</li>
+          
+          <li class="nav-item">
+              <a class="nav-link {{ Request::is('jenis-barang*') ? 'active' : '' }}" href="{{ route('jenis_barang.index') }}">
+                  <i class="bi bi-archive"></i>
+                  <span>Jenis Barang</span>
+              </a>
+          </li>
+          
+          <li class="nav-item">
+              <a class="nav-link {{ Request::is('barang*') ? 'active' : '' }}" href="{{ route('barang.index') }}">
+                  <i class="bi bi-box"></i>
+                  <span>Barang</span>
+              </a>
+          </li>
+          
+          <li class="nav-heading">Transaksi</li>
+          
+          <li class="nav-item">
+              <a class="nav-link {{ Request::is('transaksi*') ? 'active' : '' }}" href="{{ route('transaksi.index') }}">
+                  <i class="bi bi-cash-coin"></i>
+                  <span>Pencatatan Transaksi</span>
+              </a>
+          </li>
+      </ul>
+  </aside>
 
-    <footer class="text-center mt-4 fixed-bottom">
-        <p>&copy; {{ date('Y') }} Aplikasi Manajemen Barang</p>
-    </footer>
+  <!-- Main Content -->
+  <main id="main" class="main">
+      <section class="section dashboard">
+          <div class="row">
+              @yield('content')
+          </div>
+      </section>
+  </main>
 
+  <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer"> 
+    <div class="py-2 px-2 text-center fixed-bottom">
+      <p class="mb-0 fs-6">&copy; {{ date('Y') }} Aplikasi Pencatatan Penjualan</p>
+    </div>
+  </footer><!-- End Footer -->
 
-    
-    @yield('scripts')
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  {{-- script --}}
+  <script src="{{ asset('assets/vendor/apexcharts/apexcharts.min.js') }}"></script>
+  <script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+  <script src="{{ asset('assets/vendor/chart.js/chart.umd.js') }}"></script>
+  <script src="{{ asset('assets/vendor/echarts/echarts.min.js') }}"></script>
+  <script src="{{ asset('assets/vendor/quill/quill.js') }}"></script>
+  <script src="{{ asset('assets/vendor/simple-datatables/simple-datatables.js') }}"></script>
+  <script src="{{ asset('assets/vendor/tinymce/tinymce.min.js') }}"></script>
+  <script src="{{ asset('assets/vendor/php-email-form/validate.js') }}"></script>
+  
+
+  <!-- Template Main JS File -->
+  <script src="{{ asset('assets/js/main.js') }}"></script>
+
 </body>
+
 </html>

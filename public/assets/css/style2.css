@@ -1,0 +1,122 @@
+/* --- Palet Warna Modern --- */
+:root {
+    --primary-color: #3b5998; /* Biru modern */
+    --secondary-color: #f1f5f9; /* Abu muda */
+    --sidebar-bg-color: #2c3e50; /* Abu gelap */
+    --sidebar-text-color: #ecf0f1; /* Teks sidebar */
+    --text-color: #333; /* Warna teks */
+    --hover-bg-color: #34495e; /* Warna hover sidebar */
+  }
+  
+  /* --- Sidebar Modern --- */
+  .sidebar {
+    background-color: var(--sidebar-bg-color);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+  }
+  
+  .sidebar-nav .nav-link {
+    color: var(--sidebar-text-color);
+    padding: 10px 20px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .sidebar-nav .nav-link:hover {
+    background-color: var(--hover-bg-color);
+    color: white;
+  }
+  
+  .sidebar-nav .nav-link.active {
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: bold;
+  }
+  
+  .sidebar-nav .nav-heading {
+    color: var(--secondary-color);
+    padding: 10px 20px;
+  }
+  
+  /* --- Header Modern --- */
+  .header {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 15px 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .header .logo img {
+    width: 40px;
+  }
+  
+  .header .toggle-sidebar-btn {
+    font-size: 24px;
+    color: white;
+  }
+  
+  /* --- Tombol dan Efek Interaksi --- */
+  button, .btn {
+    background-color: var(--primary-color);
+    border: none;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  button:hover, .btn:hover {
+    background-color: #2e3b55;
+    transform: translateY(-3px);
+  }
+  
+  /* --- Kartu Dashboard --- */
+  .card {
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    background-color: white;
+    transition: box-shadow 0.3s ease;
+  }
+  
+  .card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  }
+  
+  /* --- Layout Responsif --- */
+  @media (max-width: 768px) {
+    .sidebar {
+      position: fixed;
+      z-index: 100;
+      width: 80%;
+      transition: transform 0.3s ease;
+      transform: translateX(-100%);
+    }
+  
+    .sidebar.show {
+      transform: translateX(0);
+    }
+  
+    .toggle-sidebar-btn {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+    }
+  
+    .main {
+      padding-top: 60px;
+    }
+  }
+  
+  @media (min-width: 769px) {
+    .sidebar {
+      width: 250px;
+      transition: none;
+    }
+  
+    .main {
+      margin-left: 250px;
+      padding-top: 20px;
+    }
+  }
+  

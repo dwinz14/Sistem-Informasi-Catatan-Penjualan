@@ -3,36 +3,54 @@
 @section('content')
 <div class="container">
     <h1>Daftar Barang</h1>
-    <a href="{{ route('barang.create') }}" class="btn btn-primary mb-3">Tambah Barang</a>
+    <a href="{{ route('barang.create') }}" class="btn btn mb-4 mb-md-2 btn-primary rounded-pill">Tambah Barang</a>
+    @if(session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Nama</th>
-                <th>Jenis Barang</th>
-                <th>Stock Awal</th>
-                <th>Keterangan</th>
-                <th>Aksi</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($barang as $item)
-            <tr>
-                <td>{{ $item->nama }}</td>
-                <td>{{ $item->jenisBarang->nama }}</td>
-                <td>{{ $item->stock_awal }}</td>
-                <td>{{ $item->keterangan }}</td>
-                <td>
-                    <a href="{{ route('barang.edit', $item->id) }}" class="btn btn-sm btn-warning">Edit</a>
-                    <form action="{{ route('barang.destroy', $item->id) }}" method="POST" style="display:inline">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus?')">Hapus</button>
-                    </form>
-                </td>
-            </tr>
-            @endforeach
-        </tbody>
-    </table>
+    <div class="container mt-4">
+        <div class="card shadow">
+            <div class="card-body">
+                <h5 class="card-title mb-4">Daftar Barang</h5>
+                <div class="table-responsive">
+                    <table class="table table-hover table-borderless">
+                        <thead>
+                            <tr>
+                                <th scope="col">Nama</th>
+                                <th scope="col">Jenis Barang</th>
+                                <th scope="col">Stock Awal</th>
+                                <th scope="col">Keterangan</th>
+                                <th scope="col" class="text-center">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($barang as $item)
+                            <tr>
+                                <td>{{ $item->nama }}</td>
+                                <td>{{ $item->jenisBarang->nama }}</td>
+                                <td>{{ $item->stock_awal }}</td>
+                                <td>{{ $item->keterangan }}</td>
+                                <td class="text-center">
+                                    <a href="{{ route('barang.edit', $item->id) }}" class="btn btn-action btn-edit me-2">
+                                        <i class="bi bi-pencil-square"></i> Edit
+                                    </a>
+                                    <form action="{{ route('barang.destroy', $item->id) }}" method="POST" class="d-inline">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-action btn-delete" onclick="return confirm('Apakah Anda yakin ingin menghapus?')">
+                                            <i class="bi bi-trash"></i> Hapus
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 @endsection
