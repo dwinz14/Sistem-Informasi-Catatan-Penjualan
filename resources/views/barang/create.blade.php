@@ -18,7 +18,7 @@
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
-                        <div class="mb-4">
+                        {{-- <div class="mb-4">
                             <label for="jenis_barang_id" class="form-label">Jenis Barang</label>
                             <select class="form-select @error('jenis_barang_id') is-invalid @enderror" id="jenis_barang_id" name="jenis_barang_id" required>
                                 <option value="">Pilih Jenis Barang</option>
@@ -29,14 +29,14 @@
                             @error('jenis_barang_id')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
-                        </div>
-                        <div class="mb-4">
+                        </div> --}}
+                        {{-- <div class="mb-4">
                             <label for="stock_awal" class="form-label">Stock Awal</label>
                             <input type="number" class="form-control @error('stock_awal') is-invalid @enderror" id="stock_awal" name="stock_awal" value="{{ old('stock_awal', 0) }}" placeholder="Masukkan stock awal">
                             @error('stock_awal')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
-                        </div>
+                        </div> --}}
                         <div class="mb-4">
                             <label for="keterangan" class="form-label">Keterangan</label>
                             <textarea class="form-control @error('keterangan') is-invalid @enderror" id="keterangan" name="keterangan" rows="4" placeholder="Masukkan keterangan tambahan">{{ old('keterangan') }}</textarea>

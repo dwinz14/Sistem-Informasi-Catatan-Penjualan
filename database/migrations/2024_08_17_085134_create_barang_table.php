@@ -14,12 +14,12 @@ return new class extends Migration
         Schema::create('barang', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
-            $table->unsignedBigInteger('jenis_barang_id');
-            $table->integer('stock_awal')->default(0);
+            // $table->unsignedBigInteger('jenis_barang_id');
+            // $table->integer('stock_awal')->default(0);
             $table->text('keterangan')->nullable();
             $table->timestamps();
     
-            $table->foreign('jenis_barang_id')->references('id')->on('jenis_barang');
+            // $table->foreign('jenis_barang_id')->references('id')->on('jenis_barang');
         });
     }
 

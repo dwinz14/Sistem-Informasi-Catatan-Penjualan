@@ -2,21 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Repositories\JenisBarangRepositoryInterface;
+use App\Models\JenisBarang;
 use Illuminate\Http\Request;
 
 class JenisBarangController extends Controller
 {
-    private $jenisBarangRepository;
-
-    public function __construct(JenisBarangRepositoryInterface $jenisBarangRepository)
-    {
-        $this->jenisBarangRepository = $jenisBarangRepository;
-    }
-
     public function index()
     {
-        $jenisBarang = $this->jenisBarangRepository->getAll();
+        $jenisBarang = JenisBarang::all();
         return view('jenis_barang.index', compact('jenisBarang'));
     }
 
@@ -32,13 +25,13 @@ class JenisBarangController extends Controller
             'deskripsi' => 'nullable|string',
         ]);
 
-        $this->jenisBarangRepository->create($data);
+        JenisBarang::create($data);
         return redirect()->route('jenis_barang.index')->with('success', 'Jenis barang berhasil ditambahkan.');
     }
 
     public function edit($id)
     {
-        $jenisBarang = $this->jenisBarangRepository->getById($id);
+        $jenisBarang = JenisBarang::findOrFail($id);
         return view('jenis_barang.edit', compact('jenisBarang'));
     }
 
@@ -49,13 +42,15 @@ class JenisBarangController extends Controller
             'deskripsi' => 'nullable|string',
         ]);
 
-        $this->jenisBarangRepository->update($id, $data);
+        $jenisBarang = JenisBarang::findOrFail($id);
+        $jenisBarang->update($data);
         return redirect()->route('jenis_barang.index')->with('success', 'Jenis barang berhasil diperbarui.');
     }
 
     public function destroy($id)
     {
-        $this->jenisBarangRepository->delete($id);
+        $jenisBarang = JenisBarang::findOrFail($id);
+        $jenisBarang->delete();
         return redirect()->route('jenis_barang.index')->with('success', 'Jenis barang berhasil dihapus.');
     }
 }

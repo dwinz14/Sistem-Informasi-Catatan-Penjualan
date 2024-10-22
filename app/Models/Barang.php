@@ -9,7 +9,8 @@ use Illuminate\Support\Facades\Crypt;
 class Barang extends Model
 {
     protected $table = 'barang';
-    protected $fillable = ['nama', 'jenis_barang_id', 'stock_awal', 'keterangan'];
+    protected $fillable = ['nama', 'keterangan'];
+    // protected $fillable = ['nama', 'jenis_barang_id', 'stock_awal', 'keterangan'];
 
     public function jenisBarang()
     {

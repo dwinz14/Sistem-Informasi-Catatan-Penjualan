@@ -1,9 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <h1>Daftar Barang</h1>
-    <a href="{{ route('barang.create') }}" class="btn btn mb-4 mb-md-2 btn-primary rounded-pill">Tambah Barang</a>
+<div class="container-fluid">
+    <div class="pagetitle">
+        <h1>Daftar Barang</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
+                <li class="breadcrumb-item active">Barang</li>
+            </ol>
+        </nav>
+    </div>
     @if(session('success'))
         <div class="alert alert-success">
             {{ session('success') }}
@@ -13,14 +20,19 @@
     <div class="container mt-4">
         <div class="card shadow">
             <div class="card-body">
-                <h5 class="card-title mb-4">Daftar Barang</h5>
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h5 class="card-title mb-4">Daftar Barang</h5>
+                    <a href="{{ route('barang.create') }}" class="btn btn-primary btn-sm rounded-pill">
+                        <i class="bi bi-plus-circle"></i> Tambah Barang
+                    </a>
+                </div>
                 <div class="table-responsive">
                     <table class="table table-hover table-borderless">
                         <thead>
                             <tr>
                                 <th scope="col">Nama</th>
-                                <th scope="col">Jenis Barang</th>
-                                <th scope="col">Stock Awal</th>
+                                {{-- <th scope="col">Jenis Barang</th>
+                                <th scope="col">Stock Awal</th> --}}
                                 <th scope="col">Keterangan</th>
                                 <th scope="col" class="text-center">Aksi</th>
                             </tr>
@@ -29,8 +41,8 @@
                             @foreach($barang as $item)
                             <tr>
                                 <td>{{ $item->nama }}</td>
-                                <td>{{ $item->jenisBarang->nama }}</td>
-                                <td>{{ $item->stock_awal }}</td>
+                                {{-- <td>{{ $item->jenisBarang->nama }}</td>
+                                <td>{{ $item->stock_awal }}</td> --}}
                                 <td>{{ $item->keterangan }}</td>
                                 <td class="text-center">
                                     <a href="{{ route('barang.edit', $item->id) }}" class="btn btn-action btn-edit me-2">

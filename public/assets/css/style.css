@@ -1237,3 +1237,49 @@ h6 {
   font-size: 13px;
   color: #012970;
 }
+
+/* Tambahkan ini di bagian bawah file style.css */
+
+/* Table Styles */
+.table th, .table td {
+    vertical-align: middle;
+    text-align: center;
+}
+
+.table th a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.table th a:hover {
+    text-decoration: underline;
+}
+
+/* Pagination Styles */
+.pagination {
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.pagination .page-item {
+  margin: 0 2px;
+}
+
+.pagination .page-item .page-link {
+  color: var(--primary-color);
+  border: none;
+  border-radius: 50%;
+  padding: 8px 12px;
+  transition: background-color 0.3s;
+}
+
+.pagination .page-item .page-link:hover {
+  background-color: var(--primary-color);
+  color: #fff;
+}
+
+.pagination .page-item.active .page-link {
+  background-color: var(--primary-color);
+  color: #fff;
+  border: none;
+}
