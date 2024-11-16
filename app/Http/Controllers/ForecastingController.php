@@ -78,7 +78,7 @@ class ForecastingController extends Controller
             $forecast[$months[$i]] = number_format($ma3, 3);
         }
 
-        // Forecasting untuk 6 bulan ke depan
+        // Forecasting untuk 3 bulan ke depan
         $lastThreeValues = array_slice($values, -3);
         $nextMonth = Carbon::parse(end($months))->addMonth();
 
@@ -142,90 +142,5 @@ class ForecastingController extends Controller
 
         return $chartData;
     }
-
-    // private function calculateAdditionalStats($historicalData)
-    // {
-    //     $stats = [];
-    //     $values = array_values($historicalData->toArray());
-
-    //     $stats['total_sales'] = array_sum($values);
-    //     $stats['average_monthly_sales'] = count($values) > 0 ? $stats['total_sales'] / count($values) : 0;
-    //     $stats['min_sales'] = min($values);
-    //     $stats['max_sales'] = max($values);
-
-    //     // Calculate trend
-    //     $trend = $this->calculateTrend($values);
-    //     $stats['trend'] = $trend['slope'] > 0 ? 'Upward' : ($trend['slope'] < 0 ? 'Downward' : 'Stable');
-    //     $stats['trend_value'] = $trend['slope'];
-
-    //     // Identify seasonality (simple method, can be improved)
-    //     $stats['seasonality'] = $this->identifySeasonality($values);
-
-    //     return $stats;
-    // }
-
-    // private function calculateTrend($values)
-    // {
-    //     $n = count($values);
-    //     $sum_x = 0;
-    //     $sum_y = 0;
-    //     $sum_xy = 0;
-    //     $sum_xx = 0;
-
-    //     for ($i = 0; $i < $n; $i++) {
-    //         $sum_x += $i;
-    //         $sum_y += $values[$i];
-    //         $sum_xy += $i * $values[$i];
-    //         $sum_xx += $i * $i;
-    //     }
-
-    //     $slope = ($n * $sum_xy - $sum_x * $sum_y) / ($n * $sum_xx - $sum_x * $sum_x);
-    //     $intercept = ($sum_y - $slope * $sum_x) / $n;
-
-    //     return ['slope' => $slope, 'intercept' => $intercept];
-    // }
-
-    // private function identifySeasonality($values)
-    // {
-    //     // Simple method to check for seasonality, can be improved
-    //     $n = count($values);
-    //     if ($n < 12
-    //     ) return 'Insufficient data';
-
-    //     $correlations = [];
-    //     for ($lag = 1; $lag <= 12; $lag++) {
-    //         $correlation = $this->autocorrelation($values, $lag);
-    //         $correlations[$lag] = $correlation;
-    //     }
-
-    //     $max_correlation = max($correlations);
-    //     $max_lag = array_search($max_correlation, $correlations);
-
-    //     if ($max_correlation > 0.5 && ($max_lag == 3 || $max_lag == 6 || $max_lag == 12)) {
-    //         return "Possible {$max_lag}-month seasonality";
-    //     }
-
-    //     return 'No clear seasonality detected';
-    // }
-
-    // private function autocorrelation($values, $lag)
-    // {
-    //     $n = count($values);
-    //     $mean = array_sum($values) / $n;
-    //     $variance = 0;
-    //     $covariance = 0;
-
-    //     for ($i = 0; $i < $n - $lag; $i++) {
-    //         $variance += pow($values[$i] - $mean, 2);
-    //         $covariance += ($values[$i] - $mean) * ($values[$i + $lag] - $mean);
-    //     }
-
-    //     // Tambahkan pengecekan untuk varians
-    //     if ($variance == 0) {
-    //         return 0; // Atau bisa mengembalikan nilai lain yang sesuai
-    //     }
-
-    //     return $covariance / $variance;
-    // }
        
 }

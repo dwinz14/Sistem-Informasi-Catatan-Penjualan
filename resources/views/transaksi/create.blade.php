@@ -26,7 +26,7 @@
                             <tr>
                                 <th style="width: 30%">Barang</th>
                                 <th style="width: 10%">Kuantitas</th>
-                                <th style="width: 25%">Harga Jual (Rp)</th>
+                                <th style="width: 25%">Harga Jual Satuan (Rp)</th>
                                 <th style="width: 25%">Subtotal (Rp)</th>
                                 <th style="width: 10%">Aksi</th>
                             </tr>
